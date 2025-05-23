@@ -196,36 +196,6 @@ const Hero = () => {
               </motion.div>
             </motion.div>
           </div>
-
-          {/* Social links */}
-          <motion.div
-            className="flex lg:flex-col gap-4 mt-8 lg:mt-0"
-            initial="hidden"
-            animate="visible"
-          >
-            {[
-              { icon: <FiGithub />, url: "https://github.com/crazydrace" },
-              {
-                icon: <FiLinkedin />,
-                url: "https://www.linkedin.com/in/muhammed-sahel-cp-12930b367/",
-              },
-              { icon: <FiTwitter />, url: "https://x.com/Dm_Sahal" },
-            ].map((social, i) => (
-              <motion.a
-                key={i}
-                custom={i}
-                variants={socialIconVariants}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/10"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {social.icon}
-              </motion.a>
-            ))}
-          </motion.div>
         </div>
 
         {/* Scrolling indicator */}
@@ -233,12 +203,12 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+          className="hidden lg:flex absolute bottom-8 left-1/2 transform -translate-x-1/2 flex-col items-center"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 2 }}
-            className="text-gray-400 mb-2"
+            className="text-gray-400 mb-2 "
           >
             Scroll down
           </motion.div>
