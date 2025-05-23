@@ -4,9 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "start": "npx nodemon",
+    "build": "echo 'No build step required'"
   },
   "keywords": [],
   "author": "",
