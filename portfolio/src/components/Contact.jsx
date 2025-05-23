@@ -22,7 +22,7 @@ const Contact = () => {
 
     try {
       // inside Contact.jsx
-      await axios.post("http://localhost:5000/api/send-email", formData);
+      await axios.post("https://dev-scp.onrender.com/api/send-email", formData);
 
       setStatus({ sending: false, success: true, error: "" });
       setFormData({ name: "", email: "", message: "" });
