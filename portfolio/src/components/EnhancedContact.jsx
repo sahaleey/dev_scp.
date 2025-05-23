@@ -112,11 +112,19 @@ const EnhancedContact = () => {
               </div>
             ))}
 
-            <div className="h-80 w-full bg-gray-800 rounded-xl overflow-hidden mt-8">
-              <div className="w-full h-full flex items-center justify-center text-gray-400">
-                <FiMapPin className="text-4xl text-cyan-400" />
-                <span className="ml-2">Location Map</span>
-              </div>
+            <div className="h-80 w-full rounded-xl overflow-hidden mt-8">
+              <iframe
+                title="Muhammed Sahel CP's Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3931.552497379697!2d75.9324179!3d11.4245166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba63ef865ec7933%3A0x8b5e19a88d5d8c97!2sThiruvambadi%2C%20Kerala%20673404%2C%20India!5e0!3m2!1sen!2sin!4v1682176747491!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                className="border-0"
+                allowFullScreen=""
+                loading="eager"
+                rel="preload"
+                style={{ filter: "grayscale(0.5) contrast(1.2) opacity(0.7)" }}
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
             </div>
           </motion.div>
 
