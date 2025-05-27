@@ -3,6 +3,8 @@ import { Link } from "react-scroll";
 import { FiArrowRight } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
+import Spline from "@splinetool/react-spline";
+import RobotSection from "./GreetingAi";
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -46,7 +48,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen pt-24 py-24 flex items-center justify-center px-4 relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+      className="min-h-screen pt-10 py-8 flex items-center justify-center px-4 relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
     >
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -77,6 +79,7 @@ const Hero = () => {
           />
         ))}
       </div>
+
       {/* Custom cursor trail */}
       <motion.div
         className="fixed w-8 h-8 rounded-full bg-blue-500/20 pointer-events-none z-50"
@@ -92,9 +95,11 @@ const Hero = () => {
         transition={{ type: "spring", damping: 10, stiffness: 100 }}
       />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      {/* Main content */}
+      <div className="max-w-7xl mx-auto relative z-10 w-full">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          <div className="lg:w-2/3">
+          {/* Left Content */}
+          <div className="lg:w-1/3 ml-[20vh]">
             <motion.div
               initial="hidden"
               animate="visible"
@@ -149,6 +154,9 @@ const Hero = () => {
               </Link>
             </motion.div>
           </div>
+
+          {/* Right Spline Robot */}
+          <RobotSection />
         </div>
       </div>
     </section>

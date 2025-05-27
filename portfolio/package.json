@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "@splinetool/react-spline": "^4.0.0",
     "axios": "^1.9.0",
     "framer-motion": "^10.16.4",
     "nodemailer": "^7.0.3",
