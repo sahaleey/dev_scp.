@@ -3,7 +3,6 @@ import { Link } from "react-scroll";
 import { FiArrowRight } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
-import Spline from "@splinetool/react-spline";
 import RobotSection from "./GreetingAi";
 
 const Hero = () => {
@@ -48,7 +47,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen pt-10 py-8 flex items-center justify-center px-4 relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+      className="min-h-screen pt-20 sm:pt-28 md:pt-20 pb-10 px-4 sm:px-6 md:px-10 lg:px-20 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
     >
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -97,9 +96,9 @@ const Hero = () => {
 
       {/* Main content */}
       <div className="max-w-7xl mx-auto relative z-10 w-full">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+        <div className="flex flex-col md:flex-col lg:flex-row items-center justify-between gap-8 md:gap-10 lg:gap-12 px-2 md:px-6">
           {/* Left Content */}
-          <div className="lg:w-1/3 ml-[20vh]">
+          <div className="w-full md:w-4/5 lg:w-1/3 ml-0 md:ml-8 lg:ml-[20vh] text-center md:text-left">
             <motion.div
               initial="hidden"
               animate="visible"
@@ -113,11 +112,11 @@ const Hero = () => {
                 Hi, my name is
               </motion.p>
 
-              <motion.h1 className="text-5xl md:text-7xl font-bold mb-4 text-white leading-tight">
+              <motion.h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-white leading-tight">
                 Muhammed Sahel CP
               </motion.h1>
 
-              <motion.h2 className="text-3xl md:text-5xl font-bold text-gray-300 mb-6 leading-tight">
+              <motion.h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-300 mb-6 leading-tight">
                 I build{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
                   {text}
@@ -125,7 +124,7 @@ const Hero = () => {
                 <Cursor cursorStyle="|" />
               </motion.h2>
 
-              <motion.p className="text-gray-400 max-w-xl mb-8 text-lg leading-relaxed">
+              <motion.p className="text-gray-400 max-w-xl mx-auto md:mx-0 mb-8 text-lg leading-relaxed">
                 I'm a full-stack developer specializing in creating beautiful,
                 functional, and user-centric web applications with modern
                 technologies.
