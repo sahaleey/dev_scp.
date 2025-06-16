@@ -37,7 +37,7 @@ const EnhancedContact = () => {
     {
       icon: <FiPhone className="text-cyan-400 text-xl" />,
       title: "Phone",
-      value: "+91 9846 187150",
+      value: "+91 9846 187150, +91 9074 483285",
     },
   ];
 
@@ -51,7 +51,7 @@ const EnhancedContact = () => {
     setStatus({ sending: true, success: false, error: "" });
 
     try {
-      await axios.post("https://dev-scp.onrender.com/api/send-email", formData);
+      await axios.post("http://localhost:5000/api/send-email", formData);
       setStatus({ sending: false, success: true, error: "" });
       setFormData({ name: "", email: "", message: "" });
       setTimeout(
