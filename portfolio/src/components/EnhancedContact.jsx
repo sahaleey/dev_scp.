@@ -51,7 +51,7 @@ const EnhancedContact = () => {
     setStatus({ sending: true, success: false, error: "" });
 
     try {
-      await axios.post("http://localhost:5000/api/send-email", formData);
+      await axios.post("https://dev-scp.onrender.com/api/send-email", formData);
       setStatus({ sending: false, success: true, error: "" });
       setFormData({ name: "", email: "", message: "" });
       setTimeout(
