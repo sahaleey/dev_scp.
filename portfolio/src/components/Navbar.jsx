@@ -136,7 +136,7 @@ const Navbar = () => {
                     className={`relative px-1 py-2 text-sm font-medium transition-colors ${
                       activeLink === link.to
                         ? "text-cyan-400"
-                        : "text-gray-400 hover:text-gray-700"
+                        : "text-gray-400 hover:text-gray-700 "
                     }`}
                     onSetActive={() => setActiveLink(link.to)}
                   >
@@ -189,7 +189,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden text-gray-600 p-2 rounded-lg hover:bg-gray-800 focus:outline-none"
+            className="md:hidden text-gray-600 p-2  rounded-lg hover:bg-gray-800 focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -228,7 +228,7 @@ const Navbar = () => {
                       className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
                         activeLink === link.to
                           ? "bg-gray-800 text-cyan-400"
-                          : "text-gray-900 hover:bg-gray-800 hover:text-white"
+                          : "text-gray-500 hover:bg-gray-800 hover:text-white"
                       }`}
                       onClick={() => setIsOpen(false)}
                       onSetActive={() => setActiveLink(link.to)}
