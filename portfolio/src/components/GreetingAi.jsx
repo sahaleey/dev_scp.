@@ -20,15 +20,18 @@ const RobotSection = () => {
         }
       }
     }, 1000);
-
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="relative lg:w-1/1 w-full h-[400px] sm:h-[500px] md:h-[550px] lg:h-[600px] flex flex-col items-center justify-center px-6 lg:px-12 overflow-visible">
+    <div className="fixed inset-0 w-screen h-screen z-0">
       <Spline
-        scene="https://prod.spline.design/fHhgpqJzMPn7-q-x/scene.splinecode"
-        rel="preload"
+        scene="https://prod.spline.design/Oi0ONlU2xYqq0fW1/scene.splinecode"
+        style={{
+          width: "100%",
+          height: "100%",
+          pointerEvents: "auto",
+        }}
       />
     </div>
   );

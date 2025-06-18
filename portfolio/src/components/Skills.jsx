@@ -63,7 +63,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="py-20 px-4 bg-gradient-to-b from-gray-900 to-gray-800"
+      className="py-20 px-4 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden"
     >
       <div className="container mx-auto max-w-6xl">
         <motion.div

@@ -47,10 +47,15 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen pt-20 sm:pt-28 md:pt-20 pb-10 px-4 sm:px-6 md:px-10 lg:px-20 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+      className="relative min-h-screen pt-20 sm:pt-28 md:pt-20 pb-10 overflow-hidden bg-[#dfdfdf]"
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Robot in background fully interactive */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <RobotSection />
+      </div>
+
+      {/* Animated particles - no interaction */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
         {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
@@ -79,7 +84,7 @@ const Hero = () => {
         ))}
       </div>
 
-      {/* Custom cursor trail */}
+      {/* Cursor trail */}
       <motion.div
         className="fixed w-8 h-8 rounded-full bg-blue-500/20 pointer-events-none z-50"
         style={{
@@ -94,11 +99,11 @@ const Hero = () => {
         transition={{ type: "spring", damping: 10, stiffness: 100 }}
       />
 
-      {/* Main content */}
-      <div className="max-w-7xl mx-auto relative z-10 w-full">
-        <div className="flex flex-col md:flex-col lg:flex-row items-center justify-between gap-8 md:gap-10 lg:gap-12 px-2 md:px-6">
+      {/* Main content - visible but does not block robot */}
+      <div className="relative z-20 max-w-7xl w-full mx-auto px-4 sm:px-6 md:px-10 lg:px-20 pointer-events-none">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           {/* Left Content */}
-          <div className="w-full md:w-4/5 lg:w-1/3 ml-0 md:ml-8 lg:ml-[20vh] text-center md:text-left">
+          <div className="w-full md:w-4/5 lg:w-1/2 text-center md:text-left">
             <motion.div
               initial="hidden"
               animate="visible"
@@ -108,54 +113,54 @@ const Hero = () => {
                 },
               }}
             >
-              <motion.p className="text-blue-400 mb-4 text-lg font-mono">
+              <motion.p className="text-indigo-600 mb-4 text-lg font-mono">
                 Hi, my name is
               </motion.p>
 
-              <motion.h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-white leading-tight">
+              <motion.h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-gray-900 leading-tight">
                 Muhammed Sahel CP
               </motion.h1>
 
-              <motion.h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-300 mb-6 leading-tight">
+              <motion.h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6 leading-tight">
                 I build{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-600">
                   {text}
                 </span>
                 <Cursor cursorStyle="|" />
               </motion.h2>
 
-              <motion.p className="text-gray-400 max-w-xl mx-auto md:mx-0 mb-8 text-lg leading-relaxed">
+              <motion.p className="text-gray-700 max-w-xl mx-auto md:mx-0 mb-8 text-lg leading-relaxed">
                 I'm a full-stack developer specializing in creating beautiful,
                 functional, and user-centric web applications with modern
                 technologies.
               </motion.p>
 
-              <Link
-                to="projects"
-                spy={true}
-                smooth={true}
-                duration={500}
-                className="group relative inline-block"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
-                <motion.span className="relative z-10 px-8 py-4 text-white font-semibold rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 shadow-xl shadow-cyan-500/20 ring-1 ring-white/10 backdrop-blur-md hover:blur-0 hover:brightness-110 transition-all duration-300 ease-in-out flex items-center gap-2">
-                  View my projects
-                  <motion.span
-                    animate={{ x: isHovered ? 8 : 0 }}
-                    transition={{ type: "spring", stiffness: 500 }}
-                    className="text-xl"
-                  >
-                    <FiArrowRight />
+              {/* Button - make this clickable */}
+              <div className="pointer-events-auto">
+                <Link
+                  to="projects"
+                  spy={true}
+                  smooth={true}
+                  duration={500}
+                  className="group relative inline-block"
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                >
+                  <motion.span className="relative z-10 px-8 py-4 text-white font-semibold rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 shadow-xl shadow-blue-500/20 ring-1 ring-white/10 backdrop-blur-md hover:blur-0 hover:brightness-110 transition-all duration-300 ease-in-out flex items-center gap-2">
+                    View my projects
+                    <motion.span
+                      animate={{ x: isHovered ? 8 : 0 }}
+                      transition={{ type: "spring", stiffness: 500 }}
+                      className="text-xl"
+                    >
+                      <FiArrowRight />
+                    </motion.span>
                   </motion.span>
-                </motion.span>
-                <span className="absolute inset-0 rounded-xl blur-xl bg-gradient-to-r from-blue-500/40 via-cyan-400/40 to-blue-500/40 opacity-60 group-hover:opacity-90 transition duration-500 group-hover:scale-105"></span>
-              </Link>
+                  <span className="absolute inset-0 rounded-xl blur-xl bg-gradient-to-r from-indigo-500/40 via-blue-500/40 to-indigo-500/40 opacity-60 group-hover:opacity-90 transition duration-500 group-hover:scale-105"></span>
+                </Link>
+              </div>
             </motion.div>
           </div>
-
-          {/* Right Spline Robot */}
-          <RobotSection />
         </div>
       </div>
     </section>
