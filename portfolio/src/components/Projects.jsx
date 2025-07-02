@@ -16,6 +16,23 @@ const Projects = () => {
       github: "https://github.com/crazydrace/Abha-web",
     },
     {
+      title: "Blog Website",
+      description:
+        "A modern, multilingual blog platform built for the Arabic wing of our student community, designed to spotlight voices, reflections, and creativity. Users can sign up securely via Firebase Auth, post blogs with real-time likes and view counts, and admins can manage content through a sleek dashboard. Built using React (Vite) on the frontend and a Node.js + Express + MongoDB backend, it blends clean UI with smart logic — including Google login, JWT-based auth, block management, and a dynamic article reader in Arabic.",
+      image: "/image/Capture.JPG",
+      tech: [
+        "React",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Node.js",
+        "Express",
+        "FireBase",
+        "MongoDB",
+      ],
+      liveDemo: "https://aljazeera-web.vercel.app",
+      github: "https://github.com/crazydrace/aljazeera-web",
+    },
+    {
       title: "Portfolio Website",
       description:
         "A modern portfolio website about Khabib built with React and Tailwind CSS, featuring smooth animations and responsive design.",
