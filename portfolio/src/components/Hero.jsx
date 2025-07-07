@@ -20,6 +20,20 @@ const Hero = () => {
     loop: 0,
     delaySpeed: 1500,
   });
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    show: { y: 0, opacity: 1 },
+  };
 
   // Mouse tracking
   useEffect(() => {
@@ -45,9 +59,12 @@ const Hero = () => {
   }, []);
 
   return (
-    <section
+    <motion.section
+      variants={container}
+      initial="hidden"
+      animate="show"
       id="hero"
-      className="relative min-h-screen pt-20 sm:pt-28 md:pt-20 pb-10 overflow-hidden bg-[#dfdfdf]"
+      className="relative min-h-screen pt-20 sm:pt-28 md:pt-20 pb-10 overflow-hidden hero-section bg-[#dfdfdf]"
     >
       {/* Robot in background fully interactive */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -163,7 +180,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
