@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -7,8 +8,10 @@ import Skills from "./components/Skills";
 import Footer from "./components/Footer";
 import EnhancedContact from "./components/EnhancedContact";
 import Testimonials from "./components/Testimonial";
+import IntroScreen from "./components/IntroScreen";
 
 function App() {
+  const [introComplete, setIntroComplete] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -35,6 +38,9 @@ function App() {
 
   return (
     <div className="min-h-screen relative">
+      {!introComplete && (
+        <IntroScreen onComplete={() => setIntroComplete(true)} />
+      )}
       {/* Scroll progress indicator */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-500 to-purple-600 z-50"
