@@ -6,6 +6,7 @@ import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import Footer from "./components/Footer";
 import EnhancedContact from "./components/EnhancedContact";
+import Testimonials from "./components/Testimonial";
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -71,6 +72,14 @@ function App() {
         >
           <Skills />
         </motion.section>
+        {/* <motion.section
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={sectionVariants}
+        >
+          <Testimonials />
+        </motion.section> */}
 
         <motion.section
           initial="offscreen"
