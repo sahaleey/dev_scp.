@@ -6,9 +6,7 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "framer-motion";
-import { FiGithub, FiLinkedin, FiTwitter, FiMail } from "react-icons/fi";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
-import { RiMoonFill, RiSunFill } from "react-icons/ri";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,21 +46,39 @@ const Navbar = () => {
   // Active link tracking
   useEffect(() => {
     const handleScroll = () => {
-      const sections = document.querySelectorAll("section");
+      const sections = document.querySelectorAll("section[id]");
+      let found = false;
+
       sections.forEach((section) => {
         const top = section.offsetTop;
         const height = section.offsetHeight;
+        const id = section.getAttribute("id");
+
         if (
           window.scrollY >= top - 200 &&
           window.scrollY < top + height - 200
         ) {
-          setActiveLink(section.id);
+          setActiveLink(id);
+          found = true;
         }
       });
+
+      // If no section matched, we're probably at the top → default to hero
+      if (!found && window.scrollY < 300) {
+        setActiveLink("hero");
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setActiveLink(id);
+    }
+  };
 
   const navVariants = {
     visible: { y: 0 },
@@ -72,13 +88,16 @@ const Navbar = () => {
   return (
     <motion.nav
       ref={navRef}
-      className={`fixed top-0 left-0 w-full z-50 bg-transparent  transition-shadow duration-300 shadow 
-      `}
+      className="fixed top-0 left-0 w-full z-50 bg-transparent transition-shadow duration-300 shadow"
       initial="visible"
       animate={hidden ? "hidden" : "visible"}
       variants={navVariants}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      style={{ backdropFilter: "blur(12px)", height: "64px" }} // consistent height
+      style={{
+        backdropFilter: "blur(12px)",
+        height: "64px",
+        willChange: "transform",
+      }} // consistent height
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
         {/* Logo */}
@@ -99,23 +118,21 @@ const Navbar = () => {
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-6">
-          {links.map((link) => (
-            <Link
-              key={link.name}
-              to={link.to}
-              spy={true}
-              smooth={true}
-              duration={500}
-              className={`text-sm font-medium cursor-pointer transition-colors ${
-                activeLink === link.to
-                  ? "text-cyan-500 "
-                  : "text-gray-700 hover:text-gray-900 "
-              }`}
-              onSetActive={() => setActiveLink(link.to)}
-            >
-              {link.name}
-            </Link>
-          ))}
+          <div className="hidden md:flex items-center space-x-6">
+            {links.map((link) => (
+              <button
+                key={link.name}
+                onClick={() => scrollToSection(link.to)}
+                className={`text-sm font-medium transition-colors ${
+                  activeLink === link.to
+                    ? "text-cyan-500"
+                    : "text-gray-700 hover:text-gray-900"
+                }`}
+              >
+                {link.name}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Mobile Toggle Button */}
@@ -139,21 +156,22 @@ const Navbar = () => {
           >
             <div className="flex flex-col space-y-3 mt-4">
               {links.map((link) => (
-                <Link
+                <button
                   key={link.name}
-                  to={link.to}
-                  spy={true}
-                  smooth={true}
-                  duration={500}
+                  onClick={() => {
+                    setIsOpen(false);
+                    setTimeout(() => {
+                      scrollToSection(link.to);
+                    }, 200);
+                  }}
                   className={`block px-2 py-2 rounded text-base font-medium ${
-                    activeLink === link.to ? "text-cyan-500" : "text-gray-700 "
+                    activeLink === link.to ? "text-cyan-500" : "text-gray-700"
                   }`}
-                  onClick={() => setIsOpen(false)}
-                  onSetActive={() => setActiveLink(link.to)}
                 >
                   {link.name}
-                </Link>
+                </button>
               ))}
+
               <div className="flex items-center justify-between pt-4 border-t border-gray-300 "></div>
             </div>
           </motion.div>

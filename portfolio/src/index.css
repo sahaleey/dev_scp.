@@ -1,10 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @keyframes shimmer {
-  0% { background-position: -100% -100%; }
-  100% { background-position: 100% 100%; }
+  0% {
+    background-position: -100% -100%;
+  }
+
+  100% {
+    background-position: 100% 100%;
+  }
 }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+  /* Adjust this to your navbar height */
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

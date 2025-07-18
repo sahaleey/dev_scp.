@@ -77,10 +77,11 @@ const About = () => {
   }, []);
 
   return (
-    <section
-      id="about"
-      className="relative min-h-screen py-28 px-4 bg-[#0c0c0f] text-white overflow-hidden"
-    >
+  <section
+  id="about"
+  className="relative min-h-screen py-28 px-4 bg-[#0c0c0f] text-white overflow-hidden scroll-mt-20 md:scroll-mt-24"
+>
+
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <FloatingBlob
