@@ -38,7 +38,11 @@ const Footer = () => {
       url: "https://github.com/crazydrace",
       name: "GitHub",
     },
-    { icon: <FiLinkedin />, url: "https://linkedin.com", name: "LinkedIn" },
+    {
+      icon: <FiLinkedin />,
+      url: "https://www.linkedin.com/in/muhammed-sahel-cp-12930b367/",
+      name: "LinkedIn",
+    },
     { icon: <FiTwitter />, url: "https://x.com/Dm_Sahal", name: "Twitter" },
     { icon: <FiMail />, url: "mailto:ajua46244@gmail.com", name: "Email" },
   ];
