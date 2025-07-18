@@ -11,7 +11,7 @@ const IntroScreen = ({ onComplete }) => {
 
   const introTexts = [
     { text: "Welcome", subtext: "to my digital portfolio" },
-    { text: "Muhammed Sahel CP", subtext: "Senior Full-Stack Engineer" },
+    { text: "Muhammed Sahel CP", subtext: "Young Full-Stack Developer" },
     { text: "Let's build", subtext: "something extraordinary together" },
   ];
 
