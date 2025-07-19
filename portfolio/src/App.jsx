@@ -1,5 +1,11 @@
-import { useState } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { useState, useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  useVelocity,
+} from "framer-motion";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -7,19 +13,39 @@ import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import Footer from "./components/Footer";
 import EnhancedContact from "./components/EnhancedContact";
-import Testimonials from "./components/Testimonial";
-import IntroScreen from "./components/IntroScreen";
+import ScrollVelocity from "./components/ui/TextVelocity";
 
 function App() {
-  const [introComplete, setIntroComplete] = useState(false);
-  const { scrollYProgress } = useScroll();
+  const containerRef = useRef(null);
+
+  // Enhanced scroll tracking
+  const { scrollYProgress, scrollY } = useScroll({
+    container: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  // Smooth scroll progress indicator
   const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
+    stiffness: 150,
     damping: 30,
     restDelta: 0.001,
   });
 
-  // Animation variants for section transitions
+  // Calculate scroll velocity for dynamic effects
+  const scrollVelocity = useVelocity(scrollY);
+  const smoothVelocity = useSpring(scrollVelocity, {
+    damping: 50,
+    stiffness: 400,
+  });
+
+  // Dynamic background based on scroll velocity
+  const backgroundColor = useTransform(
+    smoothVelocity,
+    [-1000, 0, 1000],
+    ["#f0f4ff", "#ffffff", "#fff0f5"]
+  );
+
+  // Modern section animation variants
   const sectionVariants = {
     offscreen: {
       y: 50,
@@ -30,32 +56,41 @@ function App() {
       opacity: 1,
       transition: {
         type: "spring",
-        bounce: 0.4,
-        duration: 1,
+        bounce: 0.2,
+        duration: 0.8,
+        delay: 0.2,
       },
     },
   };
 
   return (
-    <div className="min-h-screen relative">
-      {!introComplete && (
-        <IntroScreen onComplete={() => setIntroComplete(true)} />
-      )}
-      {/* Scroll progress indicator */}
+    <motion.div
+      className="min-h-screen relative"
+      style={{ backgroundColor }}
+      ref={containerRef}
+    >
+      {/* Enhanced scroll progress indicator */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-500 to-purple-600 z-50"
-        style={{ scaleX }}
+        className="fixed top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-500 to-purple-600 z-50 origin-left"
+        style={{
+          scaleX,
+          opacity: useTransform(
+            scrollYProgress,
+            [0, 0.1, 0.9, 1],
+            [0, 1, 1, 0]
+          ),
+        }}
       />
 
-      <Navbar />
+      <Navbar scrollProgress={scrollYProgress} />
 
       <main className="overflow-hidden">
-        <Hero />
+        <Hero scrollYProgress={scrollYProgress} />
 
         <motion.section
           initial="offscreen"
           whileInView="onscreen"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.25 }}
           variants={sectionVariants}
         >
           <About />
@@ -67,7 +102,7 @@ function App() {
           viewport={{ once: true, amount: 0.2 }}
           variants={sectionVariants}
         >
-          <Projects />
+          <Projects scrollVelocity={smoothVelocity} />
         </motion.section>
 
         <motion.section
@@ -76,16 +111,31 @@ function App() {
           viewport={{ once: true, amount: 0.2 }}
           variants={sectionVariants}
         >
-          <Skills />
+          <ScrollVelocity
+            texts={["Creative Developer", "React Wizard"]}
+            className="custom-scroll-text bg-slate-900 p-5 "
+            scrollVelocity={smoothVelocity}
+            velocity={50}
+          />
         </motion.section>
-        {/* <motion.section
+
+        <motion.section
           initial="offscreen"
           whileInView="onscreen"
           viewport={{ once: true, amount: 0.2 }}
-          variants={sectionVariants}
+          variants={{
+            ...sectionVariants,
+            onscreen: {
+              ...sectionVariants.onscreen,
+              transition: {
+                ...sectionVariants.onscreen.transition,
+                staggerChildren: 0.1,
+              },
+            },
+          }}
         >
-          <Testimonials />
-        </motion.section> */}
+          <Skills />
+        </motion.section>
 
         <motion.section
           initial="offscreen"
@@ -98,8 +148,9 @@ function App() {
               scale: 1,
               transition: {
                 type: "spring",
-                stiffness: 100,
-                damping: 20,
+                stiffness: 150,
+                damping: 25,
+                mass: 0.5,
               },
             },
           }}
@@ -107,9 +158,9 @@ function App() {
           <EnhancedContact />
         </motion.section>
 
-        <Footer />
+        <Footer scrollProgress={scrollYProgress} />
       </main>
-    </div>
+    </motion.div>
   );
 }
 
