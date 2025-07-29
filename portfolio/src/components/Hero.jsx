@@ -24,7 +24,7 @@ import { SiTypescript, SiReact } from "react-icons/si";
 // Configurations
 const CONFIG = {
   socialLinks: [
-    { icon: <FiGithub />, url: "https://github.com", name: "GitHub" },
+    { icon: <FiGithub />, url: "https://github.com/sahaleey", name: "GitHub" },
     { icon: <FiLinkedin />, url: "https://linkedin.com", name: "LinkedIn" },
     { icon: <FiTwitter />, url: "https://twitter.com", name: "Twitter" },
   ],
