@@ -339,7 +339,7 @@ const Projects = () => {
           viewport={{ once: true }}
         >
           <motion.a
-            href="https://github.com/crazydrace?tab=repositories"
+            href="https://github.com/sahaleey?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-cyan-400 hover:text-white font-medium group relative overflow-hidden px-6 py-3 rounded-full border border-cyan-400/30 hover:border-cyan-400/50 hover:bg-cyan-400/10 transition-all"
