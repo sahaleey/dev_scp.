@@ -30,7 +30,7 @@ const Projects = () => {
         { name: "Framer", icon: <span className="text-white">FM</span> },
       ],
       liveDemo: "https://abha-web.vercel.app",
-      github: "https://github.com/crazydrace/Abha-web",
+      github: "https://github.com/sahaleey/Abha-web",
     },
     {
       title: "Blog Website",
@@ -44,7 +44,7 @@ const Projects = () => {
         { name: "MongoDB", icon: <SiMongodb className="text-green-600" /> },
       ],
       liveDemo: "https://aljazeera-web.vercel.app",
-      github: "https://github.com/crazydrace/aljazeera-web",
+      github: "https://github.com/sahaleey/aljazeera-web",
     },
     {
       title: "Portfolio Website",
@@ -57,7 +57,7 @@ const Projects = () => {
         { name: "Framer", icon: <span className="text-white">FM</span> },
       ],
       liveDemo: "https://athlet-portfolio-u1hf.vercel.app",
-      github: "https://github.com/crazydrace/athlet-portfolio",
+      github: "https://github.com/sahaleey/athlet-portfolio",
     },
   ];
 
