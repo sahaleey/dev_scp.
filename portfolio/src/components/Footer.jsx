@@ -1,15 +1,11 @@
-import {
-  motion,
-  useAnimation,
-  useMotionValue,
-  useTransform,
-} from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import {
   FiGithub,
   FiLinkedin,
   FiTwitter,
   FiMail,
   FiArrowUp,
+  FiHeart,
 } from "react-icons/fi";
 import { FaReact, FaNodeJs, FaHome } from "react-icons/fa";
 import {
@@ -22,29 +18,38 @@ import {
 } from "react-icons/si";
 import { AiFillProject } from "react-icons/ai";
 import { MdContacts } from "react-icons/md";
-
 import { useEffect, useState } from "react";
 
 const Footer = () => {
   const [hoveredLink, setHoveredLink] = useState(null);
-  const controls = useAnimation();
   const floatX = useMotionValue(0);
   const floatY = useMotionValue(0);
-  const [isAnimating, setIsAnimating] = useState(false);
 
   const socialLinks = [
     {
       icon: <FiGithub />,
-      url: "https://github.com/crazydrace",
+      url: "https://github.com/sahaleey",
       name: "GitHub",
+      color: "hover:text-gray-800 dark:hover:text-gray-200",
     },
     {
       icon: <FiLinkedin />,
       url: "https://www.linkedin.com/in/muhammed-sahel-cp-12930b367/",
       name: "LinkedIn",
+      color: "hover:text-blue-600 dark:hover:text-blue-400",
     },
-    { icon: <FiTwitter />, url: "https://x.com/Dm_Sahal", name: "Twitter" },
-    { icon: <FiMail />, url: "mailto:ajua46244@gmail.com", name: "Email" },
+    {
+      icon: <FiTwitter />,
+      url: "https://x.com/Dm_Sahal",
+      name: "Twitter",
+      color: "hover:text-sky-500 dark:hover:text-sky-400",
+    },
+    {
+      icon: <FiMail />,
+      url: "mailto:ajua46244@gmail.com",
+      name: "Email",
+      color: "hover:text-red-500 dark:hover:text-red-400",
+    },
   ];
 
   const quickLinks = [
@@ -56,51 +61,39 @@ const Footer = () => {
   ];
 
   const techStack = [
-    { icon: <FaReact className="text-blue-400" />, name: "React" },
-    { icon: <SiTypescript className="text-blue-600" />, name: "TypeScript" },
-    { icon: <SiTailwindcss className="text-cyan-400" />, name: "Tailwind CSS" },
-    { icon: <SiFramer className="text-purple-500" />, name: "Framer Motion" },
-    { icon: <FaNodeJs className="text-green-500" />, name: "Node.js" },
-    { icon: <SiVercel className="text-white" />, name: "Vercel" },
+    { icon: <FaReact />, name: "React", color: "text-blue-400" },
+    { icon: <SiTypescript />, name: "TypeScript", color: "text-blue-600" },
+    { icon: <SiTailwindcss />, name: "Tailwind CSS", color: "text-cyan-400" },
+    { icon: <SiFramer />, name: "Framer Motion", color: "text-purple-500" },
+    { icon: <FaNodeJs />, name: "Node.js", color: "text-green-500" },
+    {
+      icon: <SiVercel />,
+      name: "Vercel",
+      color: "text-black dark:text-gray-300",
+    },
   ];
 
   const handleMouseMove = (e) => {
     const x = e.clientX;
     const y = e.clientY;
-    floatX.set((x - window.innerWidth / 2) / 50);
-    floatY.set((y - window.innerHeight / 2) / 50);
+    floatX.set((x - window.innerWidth / 2) / 80);
+    floatY.set((y - window.innerHeight / 2) / 80);
   };
 
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
-    const interval = setInterval(() => setIsAnimating((prev) => !prev), 3000);
-
-    controls.start({
-      scale: [1, 1.05, 1],
-      transition: { duration: 8, repeat: Infinity, ease: "easeInOut" },
-    });
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      clearInterval(interval);
-    };
-  }, [controls]);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
+      transition: { staggerChildren: 0.1, delayChildren: 0.3 },
     },
   };
 
@@ -109,69 +102,68 @@ const Footer = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
+      transition: { type: "spring", stiffness: 100, damping: 15 },
     },
   };
 
   return (
-    <footer className="relative bg-[#0c0c0f] border-t border-gray-800 overflow-hidden">
-      {/* Animated Background Elements */}
+    <footer
+      className="relative 
+      bg-gradient-to-br from-white via-blue-50/50 to-cyan-50/40
+      dark:bg-gradient-to-br dark:from-gray-950 dark:via-slate-900 dark:to-[#0f172a]
+      border-t border-gray-200/50 dark:border-gray-800/60
+      overflow-hidden transition-all duration-700"
+    >
+      {/* Background grid and floating glows */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c0f]/80 to-[#0c0c0f] z-0" />
-
-        <FloatingBlob
-          x={floatX}
-          y={floatY}
-          opacity={useTransform(floatY, [-10, 0, 10], [0.3, 0.5, 0.3])}
-          scaleAnim={isAnimating ? [1, 1.2, 1] : [1, 0.8, 1]}
-          className="top-1/4 left-1/4 w-32 h-32 bg-[#3f92f4]/10"
-        />
-        <FloatingBlob
-          x={useTransform(floatX, (x) => -x * 1.5)}
-          y={useTransform(floatY, (y) => -y * 1.5)}
-          scaleAnim={isAnimating ? [1, 1.3, 1] : [1, 0.7, 1]}
-          className="bottom-1/3 right-1/4 w-40 h-40 bg-[#715adf]/10"
-        />
-
-        {/* Floating Tech Icons */}
-        {techStack.map((tech, i) => (
-          <motion.div
-            key={i}
-            className="absolute text-xl z-0"
+        <div className="absolute inset-0 opacity-[0.06] dark:opacity-[0.05]">
+          <div
+            className="absolute inset-0"
             style={{
-              color: tech.icon.props.className?.includes("blue-400")
-                ? "#3f92f4"
-                : tech.icon.props.className?.includes("cyan-400")
-                ? "#22d3ee"
-                : tech.icon.props.className?.includes("purple-500")
-                ? "#a855f7"
-                : tech.icon.props.className?.includes("green-500")
-                ? "#22c55e"
-                : tech.icon.props.className?.includes("blue-600")
-                ? "#2563eb"
-                : "#ffffff",
-              top: `${10 + ((i * 10) % 80)}%`,
-              left: `${5 + ((i * 15) % 80)}%`,
+              backgroundImage: `linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+                               linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)`,
+              backgroundSize: "50px 50px",
             }}
-            animate={{
-              y: [0, 10, 0],
-              rotate: [0, 5, 0],
-              opacity: [0.3, 0.7, 0.3],
-            }}
-            transition={{
-              duration: 8 + i,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.5,
-            }}
-          >
-            {tech.icon}
-          </motion.div>
-        ))}
+          />
+        </div>
+
+        {/* Floating Orbs */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-40"
+          style={{
+            x: useTransform(floatX, (v) => v * 2),
+            y: useTransform(floatY, (v) => v * 2),
+          }}
+          animate={{
+            background: [
+              "radial-gradient(circle, rgba(34,211,238,0.15) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 70%)",
+            ],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-30"
+          style={{
+            x: useTransform(floatX, (v) => -v * 1.5),
+            y: useTransform(floatY, (v) => -v * 1.5),
+          }}
+          animate={{
+            background: [
+              "radial-gradient(circle, rgba(147,51,234,0.1) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(236,72,153,0.1) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(147,51,234,0.1) 0%, transparent 70%)",
+            ],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+        />
       </div>
 
       <div className="container mx-auto px-4 py-16 relative z-10">
@@ -183,46 +175,38 @@ const Footer = () => {
           className="max-w-7xl mx-auto"
         >
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* About Section */}
+            {/* About */}
             <motion.div variants={itemVariants} className="space-y-6">
-              <motion.div
-                whileHover={{ x: 3 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  Muhammed <span className="text-cyan-400">Sahel CP</span>
+              <motion.div whileHover={{ x: 3 }}>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                  Muhammed{" "}
+                  <span className="bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
+                    Sahel CP
+                  </span>
                 </h3>
               </motion.div>
-              <p className="text-gray-400">
-                Crafting exceptional digital experiences with modern web
-                technologies and creative design.
+              <p className="text-gray-700 dark:text-gray-400 leading-relaxed">
+                Crafting clean, meaningful digital experiences with modern web
+                technologies and design clarity.
               </p>
 
-              {/* Social Links */}
+              {/* Social */}
               <motion.div className="flex gap-4" variants={containerVariants}>
-                {socialLinks.map((social, index) => (
+                {socialLinks.map((social, i) => (
                   <motion.a
-                    key={index}
-                    variants={itemVariants}
+                    key={i}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white transition-all relative overflow-hidden group"
-                    whileHover={{ y: -5, scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onMouseEnter={() => setHoveredLink(index)}
-                    onMouseLeave={() => setHoveredLink(null)}
+                    className={`p-3 rounded-2xl 
+                      bg-white/80 dark:bg-gray-800/70 
+                      backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50
+                      text-gray-600 dark:text-gray-400 ${social.color}
+                      transition-all duration-300 hover:shadow-md hover:scale-110`}
+                    whileHover={{ y: -5 }}
                     title={social.name}
                   >
                     {social.icon}
-                    <motion.span
-                      className="absolute bottom-0 left-1/2 h-0.5 bg-cyan-400 -translate-x-1/2"
-                      initial={{ width: 0 }}
-                      animate={{
-                        width: hoveredLink === index ? "80%" : 0,
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
                   </motion.a>
                 ))}
               </motion.div>
@@ -230,46 +214,61 @@ const Footer = () => {
 
             {/* Quick Links */}
             <motion.div variants={itemVariants} className="space-y-6">
-              <h3 className="text-2xl font-bold text-white">Quick Links</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                Quick Links
+              </h3>
               <ul className="space-y-3">
-                {quickLinks.map((link, index) => (
-                  <motion.p
-                    key={index}
+                {quickLinks.map((link, i) => (
+                  <motion.li
+                    key={i}
                     variants={itemVariants}
                     whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
                   >
                     <a
                       href={link.href}
-                      className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-2 group"
+                      className="text-gray-700 dark:text-gray-400 hover:text-blue-600 dark:hover:text-cyan-400 
+                      transition-colors flex items-center gap-3 group 
+                      py-2 px-3 rounded-lg hover:bg-blue-50/70 dark:hover:bg-gray-800/50
+                      backdrop-blur-sm"
                     >
-                      {link.icon}
-                      {link.name}
+                      <motion.span
+                        className="group-hover:scale-110 transition-transform"
+                        whileHover={{ rotate: 15 }}
+                      >
+                        {link.icon}
+                      </motion.span>
+                      <span className="font-medium">{link.name}</span>
                     </a>
-                  </motion.p>
+                  </motion.li>
                 ))}
               </ul>
             </motion.div>
 
             {/* Tech Stack */}
             <motion.div variants={itemVariants} className="space-y-6">
-              <h3 className="text-2xl font-bold text-white">Tech Stack</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                Tech Stack
+              </h3>
               <div className="grid grid-cols-2 gap-4">
-                {techStack.map((tech, index) => (
+                {techStack.map((tech, i) => (
                   <motion.div
-                    key={index}
+                    key={i}
                     variants={itemVariants}
-                    className="flex items-center gap-3 p-3 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors"
-                    whileHover={{ y: -5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    className="flex items-center gap-3 p-3 rounded-xl
+                    bg-white/80 dark:bg-gray-800/70 
+                    backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50
+                    hover:shadow-md transition-all duration-300 group"
+                    whileHover={{ y: -5, scale: 1.02 }}
                   >
                     <motion.div
-                      whileHover={{ rotate: 15, scale: 1.2 }}
-                      transition={{ type: "spring", stiffness: 400 }}
+                      className={`${tech.color} group-hover:scale-110 transition-transform`}
+                      whileHover={{ rotate: 15 }}
                     >
                       {tech.icon}
                     </motion.div>
-                    <span className="text-gray-300">{tech.name}</span>
+                    <span className="text-gray-800 dark:text-gray-300 font-medium">
+                      {tech.name}
+                    </span>
                   </motion.div>
                 ))}
               </div>
@@ -279,55 +278,50 @@ const Footer = () => {
           {/* Divider */}
           <motion.div
             variants={itemVariants}
-            className="border-t border-gray-800 my-12"
+            className="border-t border-gray-300/60 dark:border-gray-700/50 my-12"
           />
 
-          {/* Bottom Section */}
+          {/* Bottom */}
           <motion.div
             variants={containerVariants}
             className="flex flex-col md:flex-row justify-between items-center gap-6"
           >
-            <motion.p variants={itemVariants} className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} Muhammed Sahel CP. All rights
-              reserved.
-            </motion.p>
-
             <motion.div
               variants={itemVariants}
-              className="flex items-center gap-4"
+              className="flex items-center gap-2 text-gray-700 dark:text-gray-400 text-sm"
             >
-              <motion.button
-                onClick={scrollToTop}
-                className="flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-colors group"
-                whileHover={{ y: -3 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Back to top
-                <motion.span
-                  className="group-hover:-translate-y-1 transition-transform"
-                  animate={{
-                    y: [0, -3, 0],
-                    transition: { repeat: Infinity, duration: 2 },
-                  }}
-                >
-                  <FiArrowUp />
-                </motion.span>
-              </motion.button>
+              <span>© {new Date().getFullYear()} Muhammed Sahel CP.</span>
+              <span>All rights reserved.</span>
             </motion.div>
+
+            <motion.button
+              onClick={scrollToTop}
+              className="flex items-center gap-2 
+              text-gray-700 dark:text-gray-400 
+              hover:text-blue-600 dark:hover:text-cyan-400 
+              transition-colors group
+              bg-white/80 dark:bg-gray-800/70 
+              backdrop-blur-md px-4 py-2 rounded-xl
+              border border-gray-200/50 dark:border-gray-700/50
+              hover:shadow-md"
+              whileHover={{ y: -3, scale: 1.05 }}
+            >
+              <span className="font-medium">Back to top</span>
+              <motion.span
+                className="group-hover:-translate-y-1 transition-transform"
+                animate={{
+                  y: [0, -3, 0],
+                  transition: { repeat: Infinity, duration: 2 },
+                }}
+              >
+                <FiArrowUp />
+              </motion.span>
+            </motion.button>
           </motion.div>
         </motion.div>
       </div>
     </footer>
   );
 };
-
-const FloatingBlob = ({ x, y, opacity, scaleAnim, className }) => (
-  <motion.div
-    className={`absolute rounded-full blur-xl z-0 ${className}`}
-    style={{ x, y, opacity }}
-    animate={{ scale: scaleAnim }}
-    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-  />
-);
 
 export default Footer;

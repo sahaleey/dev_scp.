@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import { Link } from "react-scroll";
+// src/components/Navbar.jsx
+import { useState, useEffect, useCallback } from "react";
 import {
   motion,
   AnimatePresence,
@@ -7,173 +7,181 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
+import { Link } from "react-scroll";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("hero");
-
-  const [hidden, setHidden] = useState(false);
-  const navRef = useRef(null);
-
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   const { scrollY } = useScroll();
-  const scrollThreshold = 150;
-  let ticking = false;
 
-  const links = [
-    { name: "Home", to: "hero" },
-    { name: "About", to: "about" },
-    // { name: "Testimonial", to: "testimonials" },
-    { name: "Work", to: "projects" },
-    { name: "Skills", to: "skills" },
-    { name: "Contact", to: "contact" },
+  const navigation = [
+    { name: "Home", href: "hero" },
+    { name: "About", href: "about" },
+    { name: "Work", href: "projects" },
+    { name: "Skills", href: "skills" },
+    { name: "Contact", href: "contact" },
   ];
 
-  // Scroll Hide / Show Navbar (Debounced)
+  // detect scroll for subtle background fade
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        const prev = scrollY.getPrevious();
-        if (latest > prev && latest > scrollThreshold) {
-          setHidden(true);
-        } else {
-          setHidden(false);
-        }
-        ticking = false;
-      });
-      ticking = true;
-    }
+    setIsScrolled(latest > 20);
   });
 
-  // Active link tracking
+  const handleScroll = useCallback(() => {
+    const sections = navigation.map((item) => item.href);
+    const current = sections.find((id) => {
+      const el = document.getElementById(id);
+      if (!el) return false;
+      const rect = el.getBoundingClientRect();
+      return rect.top <= 100 && rect.bottom >= 100;
+    });
+    if (current) setActiveLink(current);
+  }, [navigation]);
+
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll("section[id]");
-      let found = false;
-
-      sections.forEach((section) => {
-        const top = section.offsetTop;
-        const height = section.offsetHeight;
-        const id = section.getAttribute("id");
-
-        if (
-          window.scrollY >= top - 200 &&
-          window.scrollY < top + height - 200
-        ) {
-          setActiveLink(id);
-          found = true;
-        }
-      });
-
-      // If no section matched, we're probably at the top → default to hero
-      if (!found && window.scrollY < 300) {
-        setActiveLink("hero");
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setActiveLink(id);
-    }
-  };
+  }, [handleScroll]);
 
-  const navVariants = {
-    visible: { y: 0 },
-    hidden: { y: "-100%" },
+  // theme toggle (you can link it to your global dark mode later)
+  const handleThemeToggle = () => {
+    setDarkMode(!darkMode);
+    document.documentElement.classList.toggle("dark");
   };
 
   return (
     <motion.nav
-      ref={navRef}
-      className="fixed top-0 left-0 w-full z-50 bg-transparent transition-shadow duration-300 shadow"
-      initial="visible"
-      animate={hidden ? "hidden" : "visible"}
-      variants={navVariants}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      style={{
-        backdropFilter: "blur(12px)",
-        height: "64px",
-        willChange: "transform",
-      }} // consistent height
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        isScrolled
+          ? "backdrop-blur-md bg-white/90 dark:bg-black/50 shadow-sm"
+          : "bg-transparent"
+      }`}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <motion.div
-          whileHover={{ rotate: [0, 10, -10, 0] }}
-          transition={{ duration: 0.6 }}
+        <motion.button
+          onClick={() => setActiveLink("hero")}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent"
         >
-          <Link
-            to="hero"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="text-2xl font-bold bg-gradient-to-r from-cyan-500 to-blue-600 text-transparent bg-clip-text cursor-pointer"
-          >
-            CODE.SCP
-          </Link>
-        </motion.div>
+          SCP
+        </motion.button>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center space-x-6">
-          <div className="hidden md:flex items-center space-x-6">
-            {links.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => scrollToSection(link.to)}
-                className={`text-sm font-medium transition-colors ${
-                  activeLink === link.to
-                    ? "text-cyan-500"
-                    : "text-gray-700 hover:text-gray-900"
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center space-x-8">
+          {navigation.map((item) => (
+            <Link
+              key={item.href}
+              to={item.href}
+              smooth={true}
+              duration={500}
+              spy={true}
+              offset={-80}
+              onSetActive={() => setActiveLink(item.href)}
+              className="relative text-sm font-medium cursor-pointer"
+            >
+              <span
+                className={`transition-colors duration-300 ${
+                  activeLink === item.href
+                    ? "text-blue-600 dark:text-blue-400"
+                    : "text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
                 }`}
               >
-                {link.name}
-              </button>
-            ))}
-          </div>
+                {item.name}
+              </span>
+              {activeLink === item.href && (
+                <motion.div
+                  layoutId="activeIndicator"
+                  className="absolute -bottom-2 left-0 w-full h-0.5 bg-blue-600 dark:bg-blue-400"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+            </Link>
+          ))}
+
+          {/* Theme toggle */}
+          <button
+            onClick={handleThemeToggle}
+            className="ml-4 p-2 rounded-full bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 transition"
+          >
+            {darkMode ? (
+              <MdLightMode className="text-yellow-400" size={20} />
+            ) : (
+              <MdDarkMode
+                className="text-gray-700 dark:text-gray-300"
+                size={20}
+              />
+            )}
+          </button>
         </div>
 
-        {/* Mobile Toggle Button */}
+        {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2 text-gray-700 "
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => setIsOpen((prev) => !prev)}
+          className="md:hidden p-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
         >
-          {isOpen ? <HiOutlineX size={24} /> : <HiOutlineMenuAlt3 size={24} />}
+          {isOpen ? <HiOutlineX size={22} /> : <HiOutlineMenuAlt3 size={22} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Dropdown */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="md:hidden bg-[#0c0c0f]  px-4 pb-4"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
+            className="md:hidden bg-white/90 dark:bg-black/70 backdrop-blur-md border-t border-gray-200 dark:border-white/10 overflow-hidden"
           >
-            <div className="flex flex-col space-y-3 mt-4">
-              {links.map((link) => (
-                <button
-                  key={link.name}
-                  onClick={() => {
+            <div className="px-6 py-4 space-y-3">
+              {navigation.map((item) => (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  offset={-80}
+                  onSetActive={() => {
+                    setActiveLink(item.href);
                     setIsOpen(false);
-                    setTimeout(() => {
-                      scrollToSection(link.to);
-                    }, 200);
                   }}
-                  className={`block px-2 py-2 rounded text-base font-medium ${
-                    activeLink === link.to ? "text-cyan-500" : "text-gray-700"
+                  className={`block py-3 px-4 rounded-lg font-medium transition-all duration-200 ${
+                    activeLink === item.href
+                      ? "bg-blue-600/10 text-blue-600 dark:text-blue-400 border border-blue-600/20"
+                      : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-white/5"
                   }`}
                 >
-                  {link.name}
-                </button>
+                  {item.name}
+                </Link>
               ))}
 
-              <div className="flex items-center justify-between pt-4 border-t border-gray-300 "></div>
+              {/* Dark mode in mobile */}
+              <button
+                onClick={handleThemeToggle}
+                className="flex items-center gap-2 py-3 px-4 rounded-lg bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 transition-all"
+              >
+                {darkMode ? (
+                  <MdLightMode className="text-yellow-400" size={20} />
+                ) : (
+                  <MdDarkMode
+                    className="text-gray-700 dark:text-gray-300"
+                    size={20}
+                  />
+                )}
+                <span className="text-black dark:text-white">
+                  {darkMode ? "Light Mode" : "Dark Mode"}
+                </span>
+              </button>
             </div>
           </motion.div>
         )}

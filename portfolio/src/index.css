@@ -2,20 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes shimmer {
-  0% {
-    background-position: -100% -100%;
-  }
-
-  100% {
-    background-position: 100% 100%;
-  }
-}
-
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 4rem;
-  /* Adjust this to your navbar height */
 }
 
 @layer base {
@@ -28,20 +17,14 @@ html {
   }
 }
 
-@layer components {
-  .nav-link {
-    @apply cursor-pointer hover:text-secondary transition-colors duration-300;
-  }
+@custom-variant dark (&:where(.dark, .dark *));
 
-  .btn {
-    @apply px-6 py-3 border border-secondary text-secondary rounded hover:bg-secondary/10 transition-all duration-300;
-  }
+/* Then optionally define theme tokens or variables */
 
-  .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-8 text-textPrimary;
-  }
-
-  .project-card {
-    @apply bg-tertiary p-6 rounded-lg hover:transform hover:-translate-y-2 transition-all duration-300;
+/* Override for dark theme */
+@layer theme {
+  .dark {
+    --color-bg: #111111;
+    --color-text: #eeeeee;
   }
 }

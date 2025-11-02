@@ -7,14 +7,14 @@ import {
   useVelocity,
 } from "framer-motion";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Projects from "./components/Projects";
-import Skills from "./components/Skills";
+import Hero from "./pages/Hero";
+import About from "./pages/About";
+import Projects from "./pages/Projects";
+import Skills from "./pages/Skills";
 import Footer from "./components/Footer";
 // import Testimonials from "./components/Testimonial";
-import EnhancedContact from "./components/EnhancedContact";
-import ScrollVelocity from "./components/ui/TextVelocity";
+import EnhancedContact from "./pages/EnhancedContact";
+import { HeroMarquee } from "./components/ui/TextVelocity";
 
 function App() {
   const containerRef = useRef(null);
@@ -112,19 +112,6 @@ function App() {
       style={{ backgroundColor }}
       ref={containerRef}
     >
-      {/* Enhanced scroll progress indicator */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-500 to-purple-600 z-50 origin-left"
-        style={{
-          scaleX,
-          opacity: useTransform(
-            scrollYProgress,
-            [0, 0.1, 0.9, 1],
-            [0, 1, 1, 0]
-          ),
-        }}
-      />
-
       <Navbar scrollProgress={scrollYProgress} />
 
       <main className="overflow-hidden">
@@ -162,11 +149,9 @@ function App() {
           viewport={{ once: true, amount: 0.2 }}
           variants={sectionVariants}
         >
-          <ScrollVelocity
-            texts={["Creative Developer", "React Wizard"]}
-            className="custom-scroll-text bg-slate-900 p-5 "
-            scrollVelocity={smoothVelocity}
-            velocity={50}
+          <HeroMarquee
+            texts={["Digital Innovator", "UI/UX Designer", "Problem Solver"]}
+            gradient={true}
           />
         </motion.section>
 
