@@ -178,14 +178,14 @@ const Footer = () => {
             {/* About */}
             <motion.div variants={itemVariants} className="space-y-6">
               <motion.div whileHover={{ x: 3 }}>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 font-main">
                   Muhammed{" "}
                   <span className="bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
                     Sahel CP
                   </span>
                 </h3>
               </motion.div>
-              <p className="text-gray-700 dark:text-gray-400 leading-relaxed">
+              <p className="text-gray-700 dark:text-gray-400 leading-relaxed font-lato">
                 Crafting clean, meaningful digital experiences with modern web
                 technologies and design clarity.
               </p>
@@ -214,7 +214,7 @@ const Footer = () => {
 
             {/* Quick Links */}
             <motion.div variants={itemVariants} className="space-y-6">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+              <h3 className="text-2xl font-secondary font-bold text-gray-900 dark:text-white">
                 Quick Links
               </h3>
               <ul className="space-y-3">
@@ -237,7 +237,7 @@ const Footer = () => {
                       >
                         {link.icon}
                       </motion.span>
-                      <span className="font-medium">{link.name}</span>
+                      <span className="font-medium font-lato">{link.name}</span>
                     </a>
                   </motion.li>
                 ))}
@@ -246,7 +246,7 @@ const Footer = () => {
 
             {/* Tech Stack */}
             <motion.div variants={itemVariants} className="space-y-6">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white font-secondary">
                 Tech Stack
               </h3>
               <div className="grid grid-cols-2 gap-4">
@@ -266,7 +266,7 @@ const Footer = () => {
                     >
                       {tech.icon}
                     </motion.div>
-                    <span className="text-gray-800 dark:text-gray-300 font-medium">
+                    <span className="text-gray-800 dark:text-gray-300 font-medium font-lato">
                       {tech.name}
                     </span>
                   </motion.div>
@@ -288,7 +288,7 @@ const Footer = () => {
           >
             <motion.div
               variants={itemVariants}
-              className="flex items-center gap-2 text-gray-700 dark:text-gray-400 text-sm"
+              className="flex items-center gap-2 text-gray-700 dark:text-gray-400 font-lato text-sm"
             >
               <span>© {new Date().getFullYear()} Muhammed Sahel CP.</span>
               <span>All rights reserved.</span>
@@ -306,7 +306,7 @@ const Footer = () => {
               hover:shadow-md"
               whileHover={{ y: -3, scale: 1.05 }}
             >
-              <span className="font-medium">Back to top</span>
+              <span className="font-medium font-secondary">Back to top</span>
               <motion.span
                 className="group-hover:-translate-y-1 transition-transform"
                 animate={{

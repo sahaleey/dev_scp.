@@ -136,7 +136,7 @@ ScrollVelocity.displayName = "ScrollVelocity";
 // Pre-styled variants for common use cases
 export const HeroMarquee = ({
   texts = ["Digital Creator", "Full-Stack Developer"],
-  className = "bg-gradient-to-t from-white to-gray-50  dark:from-[#000000] dark:to-[#04080f]",
+  className = "bg-gradient-to-t from-white to-gray-50 font-secondary  dark:from-[#000000] dark:to-[#04080f]",
   gradient = true,
 }) => (
   <ScrollVelocity

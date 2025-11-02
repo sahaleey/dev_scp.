@@ -89,7 +89,7 @@ const Navbar = () => {
               className="relative text-sm font-medium cursor-pointer"
             >
               <span
-                className={`transition-colors duration-300 ${
+                className={`transition-colors font-secondary duration-300 ${
                   activeLink === item.href
                     ? "text-blue-600 dark:text-blue-400"
                     : "text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
