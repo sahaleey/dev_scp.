@@ -117,13 +117,13 @@ const Contact = () => {
           variants={containerVariants}
         >
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-white">
+            <h2 className="text-4xl font-bold mb-4 text-white font-secondary">
               Get In{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">
                 Touch
               </span>
             </h2>
-            <p className="text-gray-400 max-w-xl mx-auto">
+            <p className="text-gray-400 max-w-xl mx-auto font-lato">
               I'm always open to discussing new projects, creative ideas, or
               opportunities to be part of your visions.
             </p>
@@ -141,7 +141,7 @@ const Contact = () => {
             <motion.div variants={itemVariants}>
               <label
                 htmlFor="name"
-                className="block text-gray-300 mb-2 font-medium"
+                className="block text-gray-300 mb-2 font-medium font-lato"
               >
                 Name
               </label>
@@ -161,7 +161,7 @@ const Contact = () => {
             <motion.div variants={itemVariants} className="mt-6">
               <label
                 htmlFor="email"
-                className="block text-gray-300 mb-2 font-medium"
+                className="block text-gray-300 mb-2 font-medium font-lato"
               >
                 Email
               </label>
@@ -181,7 +181,7 @@ const Contact = () => {
             <motion.div variants={itemVariants} className="mt-6">
               <label
                 htmlFor="message"
-                className="block text-gray-300 mb-2 font-medium"
+                className="block text-gray-300 mb-2 font-medium font-lato"
               >
                 Message
               </label>
@@ -202,7 +202,7 @@ const Contact = () => {
               <motion.button
                 type="submit"
                 disabled={status.sending}
-                className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+                className={`w-full flex items-center font-lato justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
                   status.sending
                     ? "bg-gray-600 text-gray-400"
                     : "bg-gradient-to-r from-cyan-600 to-blue-600 text-white hover:shadow-lg hover:shadow-cyan-500/20"

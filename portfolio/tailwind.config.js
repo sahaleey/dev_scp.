@@ -4,6 +4,12 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        myfont: ["MyFont", "sans-serif"],
+        main: ["main", "sans-serif"],
+        secondary: ["rubik", "mono"],
+        lato: ["lato", "sans-serif"],
+      },
       colors: {
         primary: "#0c0c0f",
         textPrimary: "#ccd6f6",

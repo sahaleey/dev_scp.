@@ -178,15 +178,15 @@ const EnhancedContact = () => {
         >
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-blue-500/10 dark:bg-cyan-400/10 border border-blue-500/20 dark:border-cyan-400/20 mb-6">
             <span className="w-2 h-2 bg-blue-500 dark:bg-cyan-400 rounded-full animate-pulse"></span>
-            <p className="text-sm font-medium text-blue-600 dark:text-cyan-300">
+            <p className="text-sm font-medium text-blue-600 dark:text-cyan-300 font-secondary">
               Contact Me
             </p>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-blue-600 to-cyan-600 dark:from-white dark:via-cyan-300 dark:to-blue-300 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-blue-600 to-cyan-600 font-secondary dark:from-white dark:via-cyan-300 dark:to-blue-300 bg-clip-text text-transparent">
             Let's Talk
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-lato">
             Whether it’s a project, a collab, or just a quick hello — I’m one
             message away.
           </p>
@@ -220,10 +220,12 @@ const EnhancedContact = () => {
                   {m.icon}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white">
+                  <h3 className="font-semibold text-gray-900 dark:text-white font-secondary">
                     {m.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400">{m.value}</p>
+                  <p className="text-gray-600 dark:text-gray-400 font-lato">
+                    {m.value}
+                  </p>
                 </div>
               </a>
             ))}
@@ -295,7 +297,7 @@ const EnhancedContact = () => {
                       repeat: Infinity,
                       ease: "linear",
                     }}
-                    className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                    className="w-5 h-5 border-2 border-white border-t-transparent rounded-full font-lato"
                   />
                   Opening WhatsApp...
                 </>

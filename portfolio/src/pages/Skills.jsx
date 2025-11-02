@@ -245,16 +245,16 @@ const Skills = () => {
             bg-blue-500/10 border border-blue-500/20 backdrop-blur-sm mb-8"
           >
             <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-            <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+            <span className="text-sm font-medium text-blue-600 dark:text-blue-400 font-secondary">
               Technical Stack
             </span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-blue-600 to-cyan-600 dark:from-white dark:via-cyan-300 dark:to-blue-300 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-blue-600 to-cyan-600 dark:from-white font-secondary dark:via-cyan-300 dark:to-blue-300 bg-clip-text text-transparent">
             Technical Expertise
           </h2>
 
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 font-lato dark:text-gray-300 max-w-3xl mx-auto">
             A curated showcase of my professional toolkit and capabilities.
           </p>
         </motion.div>
@@ -277,7 +277,7 @@ const Skills = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 font-lato">
                 {cat.icon}
                 {cat.title}
               </div>
@@ -318,16 +318,16 @@ const Skills = () => {
                   </motion.div>
                   <div className="flex-1">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white font-secondary">
                         {skill.name}
                       </h3>
                       <span
-                        className={`font-bold bg-gradient-to-r ${skillCategories[activeCategory].color} bg-clip-text text-transparent`}
+                        className={`font-bold bg-gradient-to-r font-lato ${skillCategories[activeCategory].color} bg-clip-text text-transparent`}
                       >
                         {skill.level}%
                       </span>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 font-lato">
                       {skill.description}
                     </p>
                     <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">

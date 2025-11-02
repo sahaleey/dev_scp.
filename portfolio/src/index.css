@@ -16,15 +16,40 @@ html {
     @apply bg-primary text-textPrimary;
   }
 }
-
-@custom-variant dark (&:where(.dark, .dark *));
-
-/* Then optionally define theme tokens or variables */
-
-/* Override for dark theme */
 @layer theme {
   .dark {
     --color-bg: #111111;
     --color-text: #eeeeee;
   }
+}
+
+@font-face {
+  font-family: "MyFont";
+  src: url("/src/assets/fonts/rostex.regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "main";
+  src: url("/src/assets/fonts/gued.regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "rubik";
+  src: url("/src/assets/fonts/Rubik-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "mono";
+  src: url("/src/assets/fonts/GeistMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "lato";
+  src: url("/src/assets/fonts/Lato-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }

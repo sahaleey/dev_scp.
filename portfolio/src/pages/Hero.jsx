@@ -175,12 +175,12 @@ const NameTitle = () => {
         className="text-5xl md:text-7xl font-bold 
         bg-gradient-to-r from-gray-900 to-gray-700 
         dark:from-white dark:to-gray-300 
-        bg-clip-text text-transparent mb-4"
+        bg-clip-text text-transparent mb-4 font-main"
       >
         {CONFIG.name}
       </motion.h1>
       <motion.p
-        className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-300"
+        className="text-xl md:text-2xl font-semibold text-gray-800 font-secondary dark:text-gray-300"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
@@ -204,7 +204,7 @@ const Description = () => (
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: 0.5 }}
     className="text-lg text-gray-700 dark:text-gray-300 
-    max-w-2xl mx-auto leading-relaxed mb-12"
+    max-w-2xl mx-auto leading-relaxed mb-12 font-secondary"
   >
     {CONFIG.description}
   </motion.p>

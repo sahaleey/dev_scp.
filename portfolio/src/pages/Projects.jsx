@@ -84,14 +84,14 @@ const Projects = () => {
             <span className="text-sm font-medium text-cyan-500">My Work</span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 font-secondary">
             Featured{" "}
             <span className="bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
               Projects
             </span>
           </h2>
 
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-lato">
             A collection of projects that showcase my skills in modern web
             development
           </p>
@@ -116,13 +116,13 @@ const Projects = () => {
                 <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover "
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.5 }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent dark:from-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 text-xs font-medium bg-black/40 text-cyan-400 rounded-full backdrop-blur-sm">
+                  <span className="px-3 py-1 text-xs font-medium bg-black/40 text-cyan-400 rounded-full backdrop-blur-sm font-secondary">
                     {project.category}
                   </span>
                 </div>
@@ -130,11 +130,11 @@ const Projects = () => {
 
               {/* Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-3 group-hover:text-cyan-500 transition-colors">
+                <h3 className="text-xl font-bold mb-3 group-hover:text-cyan-500 transition-colors font-secondary">
                   {project.title}
                 </h3>
 
-                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                <p className="text-gray-600 dark:text-gray-400 font-lato text-sm leading-relaxed mb-4 line-clamp-3">
                   {project.description}
                 </p>
 
@@ -142,7 +142,7 @@ const Projects = () => {
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 rounded-full border border-gray-200 dark:border-white/10"
+                      className="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 rounded-full border border-gray-200 dark:border-white/10 font-lato"
                     >
                       {tech}
                     </span>
@@ -155,7 +155,7 @@ const Projects = () => {
                     href={project.liveDemo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 text-sm font-medium text-white bg-cyan-500 hover:bg-cyan-600 px-4 py-3 rounded-lg transition-all duration-300"
+                    className="flex-1 flex items-center justify-center gap-2 text-sm font-medium text-white bg-cyan-500 hover:bg-cyan-600 px-4 py-3 rounded-lg transition-all duration-300 font-lato"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -195,7 +195,7 @@ const Projects = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span>View All Projects</span>
+            <span className="font-lato">View All Projects</span>
             <motion.span
               animate={{ x: [0, 4, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
@@ -204,7 +204,7 @@ const Projects = () => {
             </motion.span>
           </motion.a>
 
-          <p className="text-gray-600 dark:text-gray-400 text-sm mt-4">
+          <p className="text-gray-600 dark:text-gray-400 text-sm mt-4 font-lato">
             Explore more of my work on GitHub
           </p>
         </motion.div>

@@ -94,14 +94,14 @@ const About = () => {
             </span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 font-secondary">
             Crafting Digital{" "}
             <span className="bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
               Excellence
             </span>
           </h2>
 
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed font-lato">
             Passionate developer dedicated to creating innovative digital
             solutions that make a meaningful impact.
           </p>
@@ -117,11 +117,11 @@ const About = () => {
             className="space-y-8"
           >
             <motion.div variants={itemVariants} className="space-y-6">
-              <h3 className="text-2xl md:text-3xl font-bold dark:text-white text-gray-900">
+              <h3 className="text-2xl md:text-3xl font-bold dark:text-white text-gray-900 font-secondary">
                 My Journey
               </h3>
 
-              <div className="space-y-4 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-4 text-lg text-gray-700 dark:text-gray-300 leading-relaxed font-lato">
                 <p>
                   Hello, I'm{" "}
                   <span className="text-cyan-600 dark:text-cyan-400 font-semibold">
@@ -160,11 +160,11 @@ const About = () => {
                     <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">
                       {item.icon}
                     </div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white text-lg">
+                    <h4 className="font-semibold text-gray-900 dark:text-white text-lg font-secondary">
                       {item.title}
                     </h4>
                   </div>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed font-lato">
                     {item.description}
                   </p>
                 </motion.div>
@@ -195,10 +195,10 @@ const About = () => {
                       {stat.icon}
                     </div>
                   </div>
-                  <div className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1">
+                  <div className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1 font-secondary">
                     {stat.value}
                   </div>
-                  <div className="text-gray-600 dark:text-gray-400 text-sm font-medium">
+                  <div className="text-gray-600 dark:text-gray-400 text-sm font-medium font-lato">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -217,10 +217,10 @@ const About = () => {
                   <FiUsers className="text-xl" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3 font-secondary">
                     Collaborative Approach
                   </h4>
-                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed font-lato">
                     I believe the best results come from collaboration, clear
                     communication, and shared vision.
                   </p>
@@ -237,7 +237,7 @@ const About = () => {
             >
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-cyan-500 hover:bg-cyan-600 text-white font-semibold transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/25"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-cyan-500 hover:bg-cyan-600 text-white font-semibold transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/25 font-secondary"
               >
                 <span>Start a Conversation</span>
                 <FiUsers className="text-lg" />
