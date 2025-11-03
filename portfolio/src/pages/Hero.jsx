@@ -278,24 +278,27 @@ const CTASection = () => (
       duration={500}
       className="group relative inline-flex items-center gap-3 px-8 py-4 
       bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl 
-      transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-blue-500/30"
+      transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-blue-500/30 cursor-pointer "
     >
       {CONFIG.cta.primary.text}
       <FiArrowRight className="group-hover:translate-x-1 transition-transform duration-200" />
     </Link>
 
-    <a
-      href={`#${CONFIG.cta.secondary.target}`}
+    <Link
+      to={CONFIG.cta.secondary.target}
+      spy
+      smooth
+      duration={500}
       className="inline-flex items-center gap-3 px-8 py-4 
       border border-gray-300 dark:border-gray-600 
       hover:border-gray-500 dark:hover:border-gray-400 
       text-gray-800 dark:text-gray-300 
       hover:text-gray-900 dark:hover:text-white 
       font-semibold rounded-xl transition-all duration-300 
-      bg-white/70 dark:bg-transparent backdrop-blur-sm"
+      bg-white/70 dark:bg-transparent backdrop-blur-sm cursor-pointer"
     >
       {CONFIG.cta.secondary.text}
-    </a>
+    </Link>
   </motion.div>
 );
 
