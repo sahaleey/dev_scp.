@@ -70,13 +70,13 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-gray-900 overflow-hidden transition-colors duration-500"
+      className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 overflow-hidden transition-colors duration-500"
     >
       {/* === BACKGROUND EFFECTS === */}
       <StarField />
       <BackgroundGrid />
       <GradientWaves />
-      <FloatingOrbs />
+
       <AnimatedGradient mouseX={mouseX} mouseY={mouseY} />
 
       {/* === CONTENT === */}
@@ -120,49 +120,10 @@ const GradientWaves = () => (
       ease: "linear",
     }}
     style={{
-      backgroundImage:
-        "linear-gradient(120deg, rgba(59,130,246,0.08), rgba(147,51,234,0.08), rgba(236,72,153,0.08))",
       backgroundSize: "300% 300%",
     }}
   />
 );
-
-const FloatingOrbs = () => {
-  const orbs = [
-    { color: "rgba(59,130,246,0.25)", size: 300, delay: 0 },
-    { color: "rgba(147,51,234,0.25)", size: 400, delay: 2 },
-    { color: "rgba(236,72,153,0.2)", size: 350, delay: 4 },
-  ];
-
-  return (
-    <div className="absolute inset-0 overflow-hidden blur-3xl">
-      {orbs.map((orb, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full"
-          style={{
-            width: orb.size,
-            height: orb.size,
-            background: orb.color,
-            top: `${20 + i * 20}%`,
-            left: `${10 + i * 30}%`,
-          }}
-          animate={{
-            y: [0, 40, 0],
-            x: [0, 20, 0],
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: 14 + i * 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: orb.delay,
-          }}
-        />
-      ))}
-    </div>
-  );
-};
 
 const StarField = () => {
   const stars = Array.from({ length: 60 });
