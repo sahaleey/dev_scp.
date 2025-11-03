@@ -109,8 +109,8 @@ const Footer = () => {
   return (
     <footer
       className="relative 
-      bg-gradient-to-br from-white via-blue-50/50 to-cyan-50/40
-      dark:bg-gradient-to-br dark:from-gray-950 dark:via-slate-900 dark:to-[#0f172a]
+      bg-gradient-to-b from-white via-blue-50/50 to-cyan-50/40
+      dark:bg-gradient-to-b dark:from-[#0f172a] dark:via-black dark:to-black
       border-t border-gray-200/50 dark:border-gray-800/60
       overflow-hidden transition-all duration-700"
     >
