@@ -115,7 +115,7 @@ const Projects = () => {
               <div className="relative h-48 overflow-hidden">
                 <motion.img
                   src={project.image}
-                  alt={project.title}
+                  alt={`Screenshot of the ${project.title} project`}
                   className="w-full h-full object-cover "
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.5 }}
