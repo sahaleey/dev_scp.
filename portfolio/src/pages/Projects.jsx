@@ -29,8 +29,8 @@ const Projects = () => {
         "A modern digital menu web application with real-time updates and seamless user experience.",
       image: "/image/citrus.jpg",
       tech: ["React", "Node.js", "MongoDB", "Tailwind CSS"],
-      liveDemo: "https://athlet-portfolio-u1hf.vercel.app",
-      github: "https://github.com/sahaleey/athlet-portfolio",
+      liveDemo: "https://citrus-juicerie.vercel.app",
+      github: "https://github.com/sahaleey/Citrus",
       category: "Web Application",
     },
   ];
