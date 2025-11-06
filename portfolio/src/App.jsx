@@ -15,6 +15,7 @@ import Footer from "./components/Footer";
 // import Testimonials from "./components/Testimonial";
 import EnhancedContact from "./pages/EnhancedContact";
 import { HeroMarquee } from "./components/ui/TextVelocity";
+import { Helmet } from "react-helmet-async";
 
 function App() {
   const containerRef = useRef(null);
@@ -107,25 +108,34 @@ function App() {
   };
 
   return (
-    <motion.div
-      className="min-h-screen relative"
-      style={{ backgroundColor }}
-      ref={containerRef}
-    >
-      <Navbar scrollProgress={scrollYProgress} />
+    <>
+      <Helmet>
+        <title>Terminal: Sahaleey.me | Full-Stack Developer</title>
+        <meta
+          name="description"
+          content="Muhammed Sahal CP (Sahaleey) - Full-Stack Developer crafting immersive digital experiences with React, Node.js, and Framer Motion."
+        />
+        <link rel="icon" type="image/svg+xml" href="/scp.png" />
+      </Helmet>
+      <motion.div
+        className="min-h-screen relative"
+        style={{ backgroundColor }}
+        ref={containerRef}
+      >
+        <Navbar scrollProgress={scrollYProgress} />
 
-      <main className="overflow-hidden">
-        <Hero scrollYProgress={scrollYProgress} />
+        <main className="overflow-hidden">
+          <Hero scrollYProgress={scrollYProgress} />
 
-        <motion.section
-          initial="offscreen"
-          whileInView="onscreen"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={sectionVariants}
-        >
-          <About />
-        </motion.section>
-        {/* <motion.section
+          <motion.section
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.25 }}
+            variants={sectionVariants}
+          >
+            <About />
+          </motion.section>
+          {/* <motion.section
           initial="offscreen"
           whileInView="onscreen"
           viewport={{ once: true, amount: 0.25 }}
@@ -134,69 +144,70 @@ function App() {
           <Testimonials testimonials={testimonials} />
         </motion.section> */}
 
-        <motion.section
-          initial="offscreen"
-          whileInView="onscreen"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={sectionVariants}
-        >
-          <Projects scrollVelocity={smoothVelocity} />
-        </motion.section>
+          <motion.section
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={sectionVariants}
+          >
+            <Projects scrollVelocity={smoothVelocity} />
+          </motion.section>
 
-        <motion.section
-          initial="offscreen"
-          whileInView="onscreen"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={sectionVariants}
-        >
-          <HeroMarquee
-            texts={["Digital Innovator", "UI/UX Designer", "Problem Solver"]}
-            gradient={true}
-          />
-        </motion.section>
+          <motion.section
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={sectionVariants}
+          >
+            <HeroMarquee
+              texts={["Digital Innovator", "UI/UX Designer", "Problem Solver"]}
+              gradient={true}
+            />
+          </motion.section>
 
-        <motion.section
-          initial="offscreen"
-          whileInView="onscreen"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={{
-            ...sectionVariants,
-            onscreen: {
-              ...sectionVariants.onscreen,
-              transition: {
-                ...sectionVariants.onscreen.transition,
-                staggerChildren: 0.1,
+          <motion.section
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              ...sectionVariants,
+              onscreen: {
+                ...sectionVariants.onscreen,
+                transition: {
+                  ...sectionVariants.onscreen.transition,
+                  staggerChildren: 0.1,
+                },
               },
-            },
-          }}
-        >
-          <Skills />
-        </motion.section>
+            }}
+          >
+            <Skills />
+          </motion.section>
 
-        <motion.section
-          initial="offscreen"
-          whileInView="onscreen"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={{
-            offscreen: { opacity: 0, scale: 0.95 },
-            onscreen: {
-              opacity: 1,
-              scale: 1,
-              transition: {
-                type: "spring",
-                stiffness: 150,
-                damping: 25,
-                mass: 0.5,
+          <motion.section
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              offscreen: { opacity: 0, scale: 0.95 },
+              onscreen: {
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  type: "spring",
+                  stiffness: 150,
+                  damping: 25,
+                  mass: 0.5,
+                },
               },
-            },
-          }}
-        >
-          <EnhancedContact />
-        </motion.section>
+            }}
+          >
+            <EnhancedContact />
+          </motion.section>
 
-        <Footer scrollProgress={scrollYProgress} />
-      </main>
-    </motion.div>
+          <Footer scrollProgress={scrollYProgress} />
+        </main>
+      </motion.div>
+    </>
   );
 }
 
