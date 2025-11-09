@@ -110,7 +110,7 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>Terminal: Sahaleey.me | Full-Stack Developer</title>
+        <title>Terminal: Muhammed Sahel CP | Full-Stack Developer</title>
         <meta
           name="description"
           content="Muhammed Sahal CP (Sahaleey) - Full-Stack Developer crafting immersive digital experiences with React, Node.js, and Framer Motion."
