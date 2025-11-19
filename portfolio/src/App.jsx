@@ -15,7 +15,6 @@ import Footer from "./components/Footer";
 // import Testimonials from "./components/Testimonial";
 import EnhancedContact from "./pages/EnhancedContact";
 import { HeroMarquee } from "./components/ui/TextVelocity";
-import { Helmet } from "react-helmet-async";
 
 function App() {
   const containerRef = useRef(null);
@@ -109,14 +108,6 @@ function App() {
 
   return (
     <>
-      <Helmet>
-        <title>Terminal: Muhammed Sahel CP | Full-Stack Developer</title>
-        <meta
-          name="description"
-          content="Muhammed Sahal CP (Sahaleey) - Full-Stack Developer crafting immersive digital experiences with React, Node.js, and Framer Motion."
-        />
-        <link rel="icon" type="image/svg+xml" href="/scp.png" />
-      </Helmet>
       <motion.div
         className="min-h-screen relative"
         style={{ backgroundColor }}
