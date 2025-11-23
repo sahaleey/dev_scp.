@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "destination": "https://www.sahaleey.me/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "sahaleey.me"
+        }
+      ],
+      "permanent": true
+    }
+  ]
+}
