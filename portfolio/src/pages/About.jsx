@@ -125,7 +125,7 @@ const About = () => {
                 <p>
                   Hello, I'm{" "}
                   <span className="text-cyan-600 dark:text-cyan-400 font-semibold">
-                    Muhammed Sahal CP
+                    Muhammed Sahel CP
                   </span>
                   , a dedicated full-stack developer passionate about creating
                   exceptional digital experiences.

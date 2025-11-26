@@ -10,7 +10,7 @@ import { useEffect, useState, useCallback } from "react";
 import { Link } from "react-scroll";
 
 const CONFIG = {
-  name: "Muhammed Sahal CP",
+  name: "Muhammed Sahel CP",
   title: "Full-Stack Developer",
   description:
     "I craft immersive digital experiences that blend beautiful design with cutting-edge technology. Let's build something extraordinary together.",

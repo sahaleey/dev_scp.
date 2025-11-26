@@ -114,7 +114,7 @@ const Footer = () => {
       border-t border-gray-200/50 dark:border-gray-800/60
       overflow-hidden transition-all duration-700"
     >
-      {/* Sahal Text */}
+      {/* Sahel Text */}
       <div className="absolute bottom-0 left-0 right-0 text-[18vw] font-extrabold text-transparent bg-clip-text bg-gradient-to-b dark:from-gray-100/50 dark:via-gray-400/30 dark:to-gray-900/10 select-none tracking-tight leading-none text-center md:text-left flex justify-center max-md:justify-start px-6 pointer-events-none from-gray-950/30 via-gray-400/50 to-gray-200/20 ">
         SAHALEEY
       </div>
