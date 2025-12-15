@@ -1,3 +1,4 @@
+import { useEffect, useState, useCallback } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import {
   FiArrowRight,
@@ -6,8 +7,9 @@ import {
   FiTwitter,
   FiMail,
 } from "react-icons/fi";
-import { useEffect, useState, useCallback } from "react";
 import { Link } from "react-scroll";
+
+/* ================= CONFIG ================= */
 
 const CONFIG = {
   name: "Muhammed Sahel CP",
@@ -46,15 +48,18 @@ const CONFIG = {
   },
 };
 
+/* ================= HERO ================= */
+
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
+
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
   const handleMouseMove = useCallback(
-    ({ clientX: x, clientY: y }) => {
-      mouseX.set(x);
-      mouseY.set(y);
+    ({ clientX, clientY }) => {
+      mouseX.set(clientX);
+      mouseY.set(clientY);
     },
     [mouseX, mouseY]
   );
@@ -62,7 +67,10 @@ const Hero = () => {
   useEffect(() => {
     setMounted(true);
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, [handleMouseMove]);
 
   if (!mounted) return null;
@@ -70,22 +78,35 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 overflow-hidden transition-colors duration-500"
+      className="
+        relative min-h-screen flex items-center justify-center
+        bg-gradient-to-b from-white to-gray-50
+        dark:from-black dark:to-gray-900
+        overflow-hidden transition-colors duration-500
+      "
     >
-      {/* === BACKGROUND EFFECTS === */}
+      {/* Background Effects */}
       <StarField />
       <BackgroundGrid />
       <GradientWaves />
-
       <AnimatedGradient mouseX={mouseX} mouseY={mouseY} />
 
-      {/* === CONTENT === */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 mt-5 text-center">
-        <Badge />
-        <NameTitle />
-        <Description />
-        <CTASection />
-        <SocialLinks />
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-20">
+          {/* Left */}
+          <div className="w-full md:w-1/2 text-center md:text-left mt-10">
+            <NameTitle />
+            <Description />
+            <CTASection />
+            <SocialLinks />
+          </div>
+
+          {/* Right */}
+          <div className="w-full md:w-1/2 flex max-sm:mt-20 justify-center md:justify-end">
+            <ProfilePhoto />
+          </div>
+        </div>
       </div>
 
       <ScrollIndicator />
@@ -93,15 +114,17 @@ const Hero = () => {
   );
 };
 
-/* ---------- Background Effects ---------- */
+/* ================= BACKGROUND ================= */
 
 const BackgroundGrid = () => (
   <div className="absolute inset-0 opacity-5 dark:opacity-15">
     <div
       className="absolute inset-0"
       style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
-                         linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)`,
+        backgroundImage: `
+          linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)
+        `,
         backgroundSize: "40px 40px",
       }}
     />
@@ -119,14 +142,13 @@ const GradientWaves = () => (
       repeat: Infinity,
       ease: "linear",
     }}
-    style={{
-      backgroundSize: "300% 300%",
-    }}
+    style={{ backgroundSize: "300% 300%" }}
   />
 );
 
 const StarField = () => {
   const stars = Array.from({ length: 60 });
+
   return (
     <div className="absolute inset-0 overflow-hidden">
       {stars.map((_, i) => (
@@ -137,10 +159,7 @@ const StarField = () => {
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
           }}
-          animate={{
-            opacity: [0.3, 1, 0.3],
-            y: [0, 5, 0],
-          }}
+          animate={{ opacity: [0.3, 1, 0.3], y: [0, 5, 0] }}
           transition={{
             duration: 3 + Math.random() * 2,
             repeat: Infinity,
@@ -163,29 +182,50 @@ const AnimatedGradient = ({ mouseX, mouseY }) => {
       style={{
         background: useTransform(
           [x, y],
-          ([latestX, latestY]) =>
-            `radial-gradient(circle at ${latestX} ${latestY}, rgba(63,146,244,0.15), transparent 60%)`
+          ([lx, ly]) =>
+            `radial-gradient(circle at ${lx} ${ly}, rgba(63,146,244,0.15), transparent 60%)`
         ),
       }}
     />
   );
 };
 
-/* ---------- Text + Content ---------- */
+/* ================= CONTENT ================= */
 
 const Badge = () => (
   <motion.div
     initial={{ opacity: 0, scale: 0.9 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ delay: 0.2 }}
-    className="inline-flex items-center gap-2 px-4 py-2 rounded-full 
-    bg-blue-500/10 border border-blue-500/20 mb-8 text-blue-600 dark:text-blue-400"
+    className="
+      inline-flex items-center gap-2 px-4 py-2 mb-6
+      rounded-full bg-blue-500/10 border border-blue-500/20
+      text-blue-600 dark:text-blue-400
+    "
   >
-    <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+    <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
     <span className="text-sm font-medium">Available for new projects</span>
   </motion.div>
 );
 
+const ProfilePhoto = () => (
+  <motion.div
+    initial={{ scale: 0.5, opacity: 0 }}
+    animate={{ scale: 1, opacity: 1 }}
+    transition={{ delay: 0.1, type: "spring", stiffness: 260, damping: 20 }}
+    // Changed sizes: Bigger on desktop (w-80 h-80), smaller on mobile (w-48 h-48)
+    className="relative w-48 h-48 md:w-80 md:h-80 group cursor-pointer"
+  >
+    <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full blur opacity-30 group-hover:opacity-75 transition duration-500" />
+    <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 bg-white dark:bg-gray-900">
+      <img
+        src="/image/me.png"
+        alt="Muhammed Sahel CP"
+        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+    </div>
+  </motion.div>
+);
 const NameTitle = () => {
   const roles = [
     "Full-Stack Developer",
@@ -258,7 +298,8 @@ const Description = () => (
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: 0.5 }}
     className="text-lg text-gray-700 dark:text-gray-300 
-    max-w-2xl mx-auto leading-relaxed mb-12 font-secondary"
+    max-w-2xl leading-relaxed mb-12 font-secondary
+    mx-auto md:mx-0"
   >
     {CONFIG.description}
   </motion.p>
@@ -269,7 +310,7 @@ const CTASection = () => (
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: 0.6 }}
-    className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+    className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center mb-16"
   >
     <Link
       to={CONFIG.cta.primary.target}
@@ -278,7 +319,7 @@ const CTASection = () => (
       duration={500}
       className="group relative inline-flex items-center gap-3 px-8 py-4 
       bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl 
-      transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-blue-500/30 cursor-pointer "
+      transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-blue-500/30 cursor-pointer"
     >
       {CONFIG.cta.primary.text}
       <FiArrowRight className="group-hover:translate-x-1 transition-transform duration-200" />
@@ -307,7 +348,7 @@ const SocialLinks = () => (
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ delay: 0.8 }}
-    className="flex justify-center gap-6"
+    className="flex justify-center md:justify-start gap-6"
   >
     {CONFIG.socialLinks.map((link, index) => (
       <motion.a

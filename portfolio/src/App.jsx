@@ -24,49 +24,6 @@ function App() {
     container: containerRef,
     offset: ["start start", "end end"],
   });
-  const testimonials = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      role: "Product Manager at TechCorp",
-      content:
-        "Working with Muhammed was transformative for our product team. His technical expertise and attention to detail helped us deliver our flagship project 3 weeks ahead of schedule while exceeding all quality metrics. His ability to translate complex requirements into elegant solutions is unparalleled.",
-      avatar: "/avatar1.jpg",
-      rating: 5,
-      project: "Enterprise SaaS Platform",
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      role: "CTO at StartupX",
-      content:
-        "Muhammed's frontend architecture skills helped us scale our user base from 10K to 500K MAU without performance degradation. He implemented cutting-edge optimizations that reduced our bundle size by 42% and improved Lighthouse scores from 65 to 92. His React patterns are now our team standard.",
-      avatar: "/avatar2.jpg",
-      rating: 5,
-      project: "Consumer Web Application",
-    },
-    {
-      id: 3,
-      name: "Emily Rodriguez",
-      role: "UX Lead at DesignHub",
-      content:
-        "Rarely do you find an engineer who combines technical mastery with such strong design sensibilities. Muhammed's implementation of our design system reduced UI inconsistencies by 78% and his accessibility improvements boosted our WCAG compliance to AA standard across the entire product suite.",
-      avatar: "/avatar3.jpg",
-      rating: 5,
-      project: "Design System Implementation",
-    },
-    {
-      id: 4,
-      name: "David Kim",
-      role: "Director of Engineering at ScaleUp",
-      content:
-        "Muhammed led our migration from legacy Angular to Next.js, completing the transition 30% faster than projected. His architectural decisions reduced server costs by $18K/month while improving SEO rankings across all key terms. He mentored 5 junior developers during the process who are now core contributors.",
-      avatar: "/avatar4.jpg",
-      rating: 5,
-      project: "Platform Modernization",
-    },
-  ];
-
   // Smooth scroll progress indicator
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 150,
@@ -126,14 +83,6 @@ function App() {
           >
             <About />
           </motion.section>
-          {/* <motion.section
-          initial="offscreen"
-          whileInView="onscreen"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={sectionVariants}
-        >
-          <Testimonials testimonials={testimonials} />
-        </motion.section> */}
 
           <motion.section
             initial="offscreen"
